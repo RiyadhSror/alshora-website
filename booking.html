@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز مقعدك - مدرسة الشورى الخاصة</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #800020 0%, #ffd700 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+        }
+        .booking-container {
+            background: #fff8e1;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(128,0,32,0.18);
+            padding: 40px 30px 30px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #ffd700;
+        }
+        .booking-container h2 {
+            color: #800020;
+            margin-bottom: 18px;
+        }
+        .booking-form label {
+            display: block;
+            margin: 12px 0 6px;
+            color: #800020;
+            font-weight: bold;
+        }
+        .booking-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1.5px solid #800020;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            background: #fff;
+        }
+        .booking-form button {
+            background: linear-gradient(90deg, #800020 60%, #ffd700 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(128,0,32,0.08);
+            transition: background 0.3s;
+        }
+        .booking-form button:hover {
+            background: linear-gradient(90deg, #ffd700 0%, #800020 100%);
+            color: #800020;
+        }
+        .success-message {
+            color: #388e3c;
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 18px;
+            font-weight: bold;
+            display: none;
+        }
+        .school-logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #800020;
+            background: #ffd700;
+            padding: 7px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: #800020;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <img src="assets/school-logo.png" alt="شعار المدرسة" class="school-logo">
+        <h2>حجز مقعدك في مدرسة الشورى الخاصة</h2>
+        <form class="booking-form" id="bookingForm">
+            <label for="studentName">الاسم الكامل:</label>
+            <input type="text" id="studentName" name="studentName" required>
+            <label for="studentGrade">الصف الدراسي:</label>
+            <input type="text" id="studentGrade" name="studentGrade" required>
+            <label for="contactNumber">رقم التواصل:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" required pattern="[0-9]{7,15}">
+            <button type="submit">إرسال الطلب</button>
+        </form>
+        <div class="success-message" id="successMsg">تم إرسال طلبك بنجاح! سنقوم بالتواصل معك قريبًا.</div>
+        <a href="index.html#home" class="back-link">العودة للصفحة الرئيسية</a>
+    </div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('successMsg').style.display = 'block';
+            this.reset();
+        });
+    </script>
+</body>
+</html>

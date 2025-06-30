@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة الشورى الأهلية</title>
+    <!-- خطوط Google Fonts احترافية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@400;700;900&family=Changa:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- مكتبة Font Awesome للأيقونات الاحترافية -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- مكتبة Animate.css للتأثيرات الجاهزة -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- تأثيرات Parallax وReveal on Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        :root {
+            --main-color: #800020;
+            --gold: #ffd700;
+            --bg-light: #fffbe6;
+            --bg-dark: #1a1a1a;
+            --text-dark: #222;
+            --text-light: #fff;
+            --shadow: 0 4px 32px #80002022;
+            --transition: 0.35s cubic-bezier(.77,0,.18,1);
+        }
+        html, body {
+            font-family: 'Cairo', 'Tajawal', 'Changa', 'Amiri', 'Segoe UI', Arial, sans-serif;
+            background: var(--bg-light);
+            color: var(--main-color);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--gold);
+        }
+        body.dark-mode header, body.dark-mode .contact-details-box, body.dark-mode .contact-form-box, body.dark-mode form, body.dark-mode .stage-block, body.dark-mode .departments-gallery, body.dark-mode .about-content, body.dark-mode .vision-gallery, body.dark-mode .activities-gallery {
+            background: #222 !important;
+            color: var(--gold) !important;
+            box-shadow: 0 4px 32px #ffd70022 !important;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(120deg, #800020 80%, #ffd700 100%);
+            min-height: 260px;
+            border-radius: 0 0 38px 38px;
+            box-shadow: 0 6px 36px #80002033;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-content {
+            background: rgba(128,0,32,0.82);
+            border-radius: 0 0 38px 38px;
+            padding: 32px 0 22px 0;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            justify-content: center;
+            position: relative;
+        }
+        .school-logo {
+            width:120px;height:120px;max-width:22vw;max-height:22vw;border-radius:50%;box-shadow:0 4px 18px #ffd70055;background:#fff;padding:8px;
+            transition: transform 0.3s cubic-bezier(.4,2,.6,1.2);
+        }
+        .school-logo:hover {
+            transform: scale(1.08) rotate(-6deg);
+            box-shadow:0 8px 32px #ffd70099;
+        }
+        header h1 {
+            color:#ffd700;
+            font-size:2.7em;
+            font-weight:900;
+            text-shadow:0 4px 18px #80002099,0 1px 0 #fff;
+            letter-spacing:1.5px;
+            margin-bottom:10px;
+            font-family: 'Tajawal', 'Cairo', Arial, sans-serif;
+            /* إزالة background-clip/text من العنوان الرئيسي */
+        }
+        nav ul {
+            display:flex;gap:18px;justify-content:center;align-items:center;
+            padding:0;margin:0;list-style:none;
+        }
+        nav a {
+            color: #ffd700;
+            background: transparent;
+            text-shadow: 0 2px 8px #80002055;
+            padding: 0.5em 1.2em;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+            transition: background 0.25s, color 0.25s, transform 0.18s, text-shadow 0.18s;
+            text-decoration: none;
+            outline: none;
+        }
+        nav a:hover, nav a.active, nav a.active-link {
+            background: #ffd700;
+            color: #800020;
+            text-shadow: 0 2px 8px #fffbe6cc, 0 1px 0 #fff;
+            transform: scale(1.08);
+            box-shadow: 0 2px 12px #ffd70033;
+        }
+        body.dark-mode nav a {
+            color: #ffd700;
+            background: transparent;
+            text-shadow: 0 2px 8px #ffd70055;
+        }
+        body.dark-mode nav a:hover, body.dark-mode nav a.active, body.dark-mode nav a.active-link {
+            background: #ffd700;
+            color: #222;
+            text-shadow: 0 2px 8px #ffd700cc, 0 1px 0 #fff;
+            box-shadow: 0 2px 12px #ffd70033;
+        }
+        .section-window {
+          display: none;
+          animation: fadeIn 0.7s;
+        }
+        .section-window.active {
+          display: block;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        /* تأثيرات الصور والمعارض */
+        .hero-img, .about-img, .vision-img, .activity-img, .department-img {
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #80002022;
+            transition: transform 0.3s cubic-bezier(.4,2,.6,1.2), box-shadow 0.3s;
+            width: 100%;
+            max-width: 320px;
+            min-width: 180px;
+            min-height: 160px;
+            max-height: 220px;
+            object-fit: cover;
+            margin: 8px auto;
+            display: block;
+        }
+        .main-p-image img {
+            width: 100%;
+            max-width: 900px;
+            min-height: 180px;
+            max-height: 340px;
+            object-fit: cover;
+        }
+        .departments-gallery, .about-content, .vision-gallery, .activities-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        /* تأثير parallax خفيف للرأس */
+        .parallax-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('assets/p.jpg') center/cover no-repeat;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        /* تحسينات عامة للعناوين */
+        section h2, .department-title, .activities-subtitle, .contact-title {
+            font-size: 2.1em !important;
+            color: #800020;
+            font-weight: 900;
+            text-shadow: 0 2px 8px #ffd70055,0 1px 0 #fff;
+            font-family: 'Tajawal', 'Cairo', Arial, sans-serif;
+            margin-bottom: 18px;
+            position: relative;
+            display: inline-block;
+            /* إزالة background-clip/text التي تسبب اختفاء الحروف */
+            /* background: linear-gradient(90deg,#ffd700 60%,#fffbe6 100%); */
+            /* -webkit-background-clip: text; */
+            /* -webkit-text-fill-color: transparent; */
+            /* background-clip: text; */
+            animation: fadeInDown 1s;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* تحسينات عامة للنصوص */
+        p, li, label, input, textarea, button {
+            font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+        }
+        .contact-flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 36px;
+            justify-content: center;
+            align-items: stretch;
+            background: linear-gradient(120deg,#fffbe6 60%,#ffd70022 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 32px #80002022;
+            padding: 40px 18px 32px 18px;
+            margin: 0 auto 40px auto;
+            max-width: 1100px;
+        }
+        .contact-details-box {
+            flex: 1 1 320px;
+            min-width: 300px;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #ffd70033;
+            padding: 32px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-title {
+            font-size: 2.1em;
+            color: #800020;
+            font-weight: 900;
+            margin-bottom: 22px;
+            text-align: right;
+            text-shadow: 0 2px 8px #ffd70055,0 1px 0 #fff;
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact-list li {
+            font-size: 1.25em;
+            color: #800020;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-family: 'Cairo', 'Tajawal', 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px #ffd70022, 0 1px 0 #fff;
+        }
+        .contact-list li b {
+            color: #800020;
+            font-weight: 900;
+            font-size: 1.08em;
+            letter-spacing: 0.5px;
+        }
+        .contact-list li span {
+            color: #222;
+            font-weight: 500;
+            font-size: 1.08em;
+            font-family: inherit;
+        }
+        .contact-icon {
+            font-size: 1.4em;
+            margin-left: 8px;
+            color: #ffd700;
+            filter: drop-shadow(0 2px 6px #80002033);
+        }
+        .contact-link {
+            color: #800020;
+            font-weight: 900;
+            text-decoration: underline;
+            font-size: 1.08em;
+            font-family: inherit;
+        }
+        .contact-form-box {
+            flex: 1 1 340px;
+            min-width: 320px;
+            max-width: 480px;
+            background: #fffbe6;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #ffd70033;
+            padding: 32px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .form-title {
+            font-size: 1.3em;
+            color: #800020;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .contact-form label {
+            font-size: 1.1em;
+            color: #800020;
+            font-weight: 700;
+            text-align: right;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            font-size: 1.1em;
+            padding: 12px 10px;
+            border: 1.5px solid #ffd700;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 1px 6px #ffd70022;
+            resize: none;
+        }
+        .contact-form textarea {
+            min-height: 90px;
+        }
+        .contact-btn {
+            background: linear-gradient(90deg,#800020 60%,#ffd700 100%);
+            color: #fff;
+            font-size: 1.18em;
+            padding: 14px 0;
+            border: none;
+            border-radius: 8px;
+            font-weight: 900;
+            box-shadow: 0 2px 12px #80002033;
+            transition: background 0.2s;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .contact-btn:hover {
+            background: linear-gradient(90deg,#ffd700 60%,#800020 100%);
+            color: #800020;
+        }
+        .booking-btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg,#800020 60%,#ffd700 100%);
+            color: #fff;
+            font-size: 1.18em;
+            padding: 14px 32px;
+            margin: 18px auto 0 auto;
+            border: none;
+            border-radius: 10px;
+            font-weight: 900;
+            box-shadow: 0 2px 12px #80002033;
+            transition: background 0.2s, color 0.2s, transform 0.18s;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .booking-btn-icon span {
+            transition: transform 0.18s, color 0.2s;
+        }
+        .booking-btn-icon:hover {
+            background: linear-gradient(90deg,#ffd700 60%,#800020 100%);
+            color: #800020;
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 6px 24px #80002044;
+        }
+        .booking-btn-icon:hover span {
+            color: #ffd700;
+            transform: scale(1.25) rotate(-8deg);
+            text-shadow: 0 2px 8px #ffd70099;
+        }
+        /* فاصل زخرفي SVG */
+        .svg-divider {
+            width: 100%;
+            display: block;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+        }
+        @media (max-width: 900px) {
+            .contact-flex-container {
+                flex-direction: column;
+                gap: 24px;
+                padding: 24px 6px 18px 6px;
+            }
+            .contact-details-box, .contact-form-box {
+                max-width: 100%;
+                min-width: 0;
+            }
+        }
+        @media (max-width: 700px) {
+            .school-logo {width:70px !important;height:70px !important;}
+            header h1 {font-size:1.3em !important;}
+            section h2, .department-title, .activities-subtitle, .contact-title {font-size:1.3em !important;}
+        }
+        /* إصلاح ألوان النصوص في الوضع الليلي */
+        body.dark-mode input, body.dark-mode textarea {
+            background: #222 !important;
+            color: #ffd700 !important;
+            border: 1.5px solid #ffd700;
+        }
+        body.dark-mode .contact-btn, body.dark-mode .booking-btn-icon, body.dark-mode button, body.dark-mode .btn {
+            background: linear-gradient(90deg,#ffd700 60%,#800020 100%) !important;
+            color: #800020 !important;
+        }
+        body.dark-mode .contact-btn:hover, body.dark-mode .booking-btn-icon:hover, body.dark-mode button:hover, body.dark-mode .btn:hover {
+            background: linear-gradient(90deg,#800020 60%,#ffd700 100%) !important;
+            color: #ffd700 !important;
+        }
+        body.dark-mode .contact-link {
+            color: #ffd700 !important;
+        }
+        /* ترتيب صور قسم الرئيسية بشكل أفقي ومتناسق */
+        .hero-gallery {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 18px;
+            margin: 18px 0 0 0;
+            flex-wrap: wrap;
+        }
+        .hero-gallery .hero-img {
+            width: 220px;
+            max-width: 28vw;
+            min-width: 120px;
+            min-height: 140px;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #80002022;
+            transition: transform 0.3s cubic-bezier(.4,2,.6,1.2), box-shadow 0.3s;
+            margin: 0;
+            display: block;
+        }
+        @media (max-width: 700px) {
+            .hero-gallery {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero-gallery .hero-img {
+                width: 98vw;
+                max-width: 320px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="parallax-bg"></div>
+        <div class="header-content animate__animated animate__fadeInDown">
+            <img src="assets/school-logo.png" alt="شعار المدرسة" class="school-logo" onerror="this.style.display='none';document.getElementById('logo-error').style.display='block';">
+            <div>
+                <h1>مدرسة الشورى الأهلية</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#vision">الرؤية والرسالة</a></li>
+                        <li><a href="#stages">المراحل</a></li>
+                        <li><a href="#activities">أنشطة المدرسة</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="logo-error" style="display:none;color:#fff;background:#c0392b;padding:5px 10px;border-radius:6px;text-align:center;margin:10px auto;max-width:300px;">لم يتم العثور على شعار المدرسة! تأكد من رفع الصورة في مجلد assets واسمها school-logo.png</div>
+    </header>
+    <main>
+        <section id="home" class="hero-section section-window">
+            <div class="main-p-image" style="text-align:center;margin:0 auto 32px auto;max-width:900px;">
+                <img src="assets/p.jpg" alt="مدرسة الشورى" style="width:100%;max-width:900px;border-radius:24px;box-shadow:0 4px 32px #80002033;margin-top:-32px;">
+                <a href="booking.html" class="booking-btn-icon">
+                    <span style="font-size:1.5em;">📝</span> احجز مقعدك الآن
+                </a>
+            </div>
+            <div class="hero-gallery">
+                <img src="assets/hi.jpg" alt="صورة ترحيبية" class="hero-img">
+                <img src="assets/j11.jpg" alt="المرحلة الأساسية 3" class="hero-img">
+                <img src="assets/j12.jpg" alt="المرحلة الأساسية 4" class="hero-img">
+            </div>
+            <div class="hero-text">
+                <h2 style="font-size:2.2em;color:#800020;font-weight:900;text-shadow:0 2px 8px #ffd70099,0 1px 0 #fff;margin-bottom:10px;">مرحبًا بكم في مدرسة الشورى الخاصة</h2>
+                <p style="font-size:1.35em;color:#800020;font-weight:700;text-shadow:0 1px 6px #ffd70033;">بصمة تعليمية متميزة</p>
+            </div>
+        </section>
+        <section id="about" class="section-window">
+            <h2>من نحن</h2>
+            <p class="about-highlight">مدرسة الشورى : المدرسة التي بنيت على أسس الخبرة وبكادرها المؤهل المتميز والمخرجات التعليمية القوية التي ظهرت بشكل واضح في العديد من الطلاب المتوفقين في الشهادتين من أبناء المدرسة الذين نفخر بهم .</p>
+            <div class="about-content">
+                <img src="assets/hi2.jpg" alt="من نحن" class="about-img">
+                <img src="assets/u.jpg" alt="عن المدرسة 1" class="about-img">
+                <img src="assets/u2.jpg" alt="عن المدرسة 2" class="about-img">
+                <img src="assets/u3.jpg" alt="عن المدرسة 3" class="about-img">
+            </div>
+        </section>
+        <section id="vision" class="section-window">
+            <h2>الرؤية والرسالة</h2>
+            <div class="vision-highlight">
+                <p>رؤيتنا: الريادة في بناء جيل مبدع وقيمي، يمتلك المعرفة والمهارات، ويحقق التميز في جميع المجالات.</p>
+                <p>رسالتنا: تقديم بيئة تعليمية محفزة وآمنة، ترتكز على الخبرة والابتكار، وتعمل على تنمية شخصية الطالب علميًا وأخلاقيًا، ليكون عضوًا فاعلًا في المجتمع وقادرًا على مواجهة تحديات المستقبل.</p>
+            </div>
+            <div class="vision-gallery">
+                <img src="assets/t.jpg" alt="رؤية المدرسة 1" class="vision-img">
+                <img src="assets/t2.jpg" alt="رؤية المدرسة 2" class="vision-img">
+                <img src="assets/t3.jpg" alt="رؤية المدرسة 3" class="vision-img">
+                <img src="assets/t4.jpg" alt="رؤية المدرسة 4" class="vision-img">
+            </div>
+        </section>
+        <section id="activities" class="section-window">
+            <h2>أنشطة المدرسة</h2>
+            <div class="activities-gallery">
+                <img src="assets/activity1.jpg" alt="نشاط 1" class="activity-img">
+                <img src="assets/activity2.jpg" alt="نشاط 2" class="activity-img">
+                <img src="assets/activity.jpg" alt="نشاط 3" class="activity-img">
+                <img src="assets/o.jpg" alt="نشاط 4" class="activity-img">
+                <img src="assets/o2.jpg" alt="نشاط 5" class="activity-img">
+                <img src="assets/o3.jpg" alt="نشاط 6" class="activity-img">
+            </div>
+            <p class="activities-desc">تقيم المدرسة العديد من الأنشطة اللامنهجية والفعاليات الثقافية والرياضية والفنية على مدار العام.</p>
+            <h3 class="activities-subtitle">زيارات الأعيان والوجهاء وممثلي وزارة ومكتب التربية للمدرسة</h3>
+            <div class="activities-gallery">
+                <img src="assets/g.jpg" alt="زيارة 1" class="activity-img">
+                <img src="assets/g2.jpg" alt="زيارة 2" class="activity-img">
+                <img src="assets/g3.jpg" alt="زيارة 3" class="activity-img">
+                <img src="assets/g4.jpg" alt="زيارة 4" class="activity-img">
+                <img src="assets/g5.jpg" alt="زيارة 5" class="activity-img">
+                <img src="assets/g6.jpg" alt="زيارة 6" class="activity-img">
+            </div>
+            <h3 class="activities-subtitle">من تكريم ادارة المدرسة للمتوفقين والأوائل في المدرسة</h3>
+            <div class="activities-gallery">
+                <img src="assets/k.jpg" alt="تكريم 1" class="activity-img">
+                <img src="assets/k2.jpg" alt="تكريم 2" class="activity-img">
+                <img src="assets/k3.jpg" alt="تكريم 3" class="activity-img">
+                <img src="assets/k4.jpg" alt="تكريم 4" class="activity-img">
+                <img src="assets/k5.jpg" alt="تكريم 5" class="activity-img">
+                <img src="assets/k6.jpg" alt="تكريم 6" class="activity-img">
+                <img src="assets/k7.jpg" alt="تكريم 7" class="activity-img">
+                <img src="assets/k8.jpg" alt="تكريم 8" class="activity-img">
+            </div>
+            <h3 class="activities-subtitle">بعض الأنشطة الرياضية التي تقيمها المدرسة</h3>
+            <div class="activities-gallery">
+                <img src="assets/s.jpg" alt="نشاط رياضي 1" class="activity-img">
+                <img src="assets/s2.jpg" alt="نشاط رياضي 2" class="activity-img">
+                <img src="assets/s3.jpg" alt="نشاط رياضي 3" class="activity-img">
+                <img src="assets/s4.jpg" alt="نشاط رياضي 4" class="activity-img">
+            </div>
+        </section>
+        <section id="contact" class="section-window">
+            <div class="contact-flex-container">
+                <div class="contact-details-box">
+                    <h2 class="contact-title">تواصل معنا</h2>
+                    <ul class="contact-list">
+                        <li><span class="contact-icon">📞</span> <b>الهاتف:</b> <span>0123456789</span></li>
+                        <li><span class="contact-icon">📞</span> <span>773773799</span></li>
+                        <li><span class="contact-icon">📞</span> <span>01598399</span></li>
+                        <li><span class="contact-icon">📞</span> <span>01343097</span></li>
+                        <li><span class="contact-icon">✉️</span> <b>البريد الإلكتروني:</b> <span>info@alshora-school.com</span></li>
+                        <li><span class="contact-icon">📍</span> <b>العنوان:</b> <span>خط المطار الجديد، شارع فلسطين، الشيخ زايد سابقًا، شرق جولة مصعب</span></li>
+                        <li><span class="contact-icon"><img src='assets/facebook.png' style='width:28px;vertical-align:middle;'></span> <a href="https://www.facebook.com/people/%D9%85%D8%AF%D8%A7%D8%B1%D8%B3-%D8%A7%D9%84%D8%B4%D9%88%D8%B1%D9%89-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D9%8A%D8%A9/100057260568969/?sk=about&locale=ar_AR" target="_blank" class="contact-link">صفحة المدرسة على فيس بوك</a></li>
+                    </ul>
+                </div>
+                <div class="contact-form-box">
+                    <form class="contact-form">
+                        <h3 class="form-title">أرسل رسالة مباشرة</h3>
+                        <div class="form-group">
+                            <label for="name">الاسم</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">رسالتك</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-btn">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="reserve" class="section-window">
+            <h2 style="color:#800020">حجز مقعدك في المدرسة</h2>
+            <form id="reserve-form" style="max-width:400px;margin:auto;background:#fffbe6;padding:30px 20px;border-radius:12px;box-shadow:0 2px 12px #80002022;display:flex;flex-direction:column;gap:18px;">
+              <label for="reserve-name">الاسم الكامل:</label>
+              <input type="text" id="reserve-name" name="reserve-name" required>
+              <label for="reserve-class">الصف الدراسي:</label>
+              <input type="text" id="reserve-class" name="reserve-class" required>
+              <label for="reserve-phone">رقم التواصل:</label>
+              <input type="tel" id="reserve-phone" name="reserve-phone" required pattern="[0-9]{7,15}">
+              <button type="submit" style="background:#800020;color:#ffd700;font-size:1.1em;padding:12px;border:none;border-radius:6px;">إرسال الطلب</button>
+            </form>
+          </section>
+          <section id="stages" class="section-window">
+            <h2 class="department-title">المراحل</h2>
+            <div class="departments-list">
+                <div class="stage-block">
+                    <h3>المرحلة الأساسية</h3>
+                    <div class="departments-gallery" style="justify-content:center; margin-bottom:12px;">
+                        <img src="assets/j.jpg" alt="المرحلة الأساسية 1" class="department-img">
+                        <img src="assets/j1.jpg" alt="المرحلة الأساسية 2" class="department-img">
+                    </div>
+                </div>
+                <div class="stage-block">
+                    <h3>المرحلة الثانوية</h3>
+                    <div class="departments-gallery" style="justify-content:center; margin-bottom:12px;">
+                        <img src="assets/h.jpg" alt="المرحلة الثانوية 1" class="department-img">
+                        <img src="assets/h2.jpg" alt="المرحلة الثانوية 2" class="department-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer style="background:#800020;color:#ffd700;text-align:center;padding:18px 0;font-size:1.1em;font-family:'Tajawal','Cairo',Arial,sans-serif;box-shadow:0 -2px 12px #80002033;letter-spacing:1px;">
+        <p style="margin:0;">جميع الحقوق محفوظة &copy; مدرسة الشورى الأهلية 2025</p>
+    </footer>
+    <button class="dark-toggle" aria-label="تبديل الوضع الليلي" type="button">
+        <i class="fas fa-moon"></i>
+    </button>
+    <script>
+        // تأثير parallax خفيف للرأس
+        document.addEventListener('mousemove', function(e) {
+            const bg = document.querySelector('.parallax-bg');
+            if(bg) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                bg.style.transform = `translate(${x}px,${y}px)`;
+            }
+        });
+        // تأثير ظهور العناوين عند التمرير
+        function animateOnScroll() {
+            document.querySelectorAll('section h2, .department-title, .activities-subtitle, .contact-title').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight - 80) {
+                    el.classList.add('animate__animated','animate__fadeInDown');
+                }
+            });
+        }
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll();
+        document.addEventListener('DOMContentLoaded', function() {
+          const navLinks = document.querySelectorAll('nav a');
+          const sections = document.querySelectorAll('.section-window');
+          function showSection(hash) {
+            sections.forEach(sec => sec.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active-link'));
+            const target = document.querySelector(hash);
+            if(target) target.classList.add('active');
+            const navLink = Array.from(navLinks).find(l => l.getAttribute('href') === hash);
+            if(navLink) navLink.classList.add('active-link');
+          }
+          navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              showSection(this.getAttribute('href'));
+              history.replaceState(null, '', this.getAttribute('href'));
+            });
+          });
+          // Show section on load
+          showSection(location.hash || '#home');
+        });
+        document.getElementById('reserve-btn').onclick = function() {
+          document.querySelectorAll('.section-window').forEach(sec => sec.classList.remove('active'));
+          document.querySelector('nav a.active-link')?.classList.remove('active-link');
+          document.getElementById('reserve').classList.add('active');
+          history.replaceState(null, '', '#reserve');
+        };
+        document.getElementById('reserve-form').onsubmit = function(e) {
+          e.preventDefault();
+          alert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريبًا.');
+          this.reset();
+        };
+        // إرسال رسالة تواصل معنا
+        document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك قريبًا.');
+            this.reset();
+        });
+        // تبديل الوضع الليلي
+        const toggle = document.querySelector('.dark-toggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            toggle.classList.toggle('active');
+            // تبديل الأيقونة
+            const icon = toggle.querySelector('i');
+            if(document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+        // Scroll Reveal
+        ScrollReveal().reveal('.hero-section', { 
+            duration: 1000, 
+            origin: 'bottom', 
+            distance: '30px',
+            easing: 'ease-in-out',
+            viewFactor: 0.2
+        });
+        ScrollReveal().reveal('.section-window', { 
+            duration: 1000, 
+            origin: 'bottom', 
+            distance: '30px',
+            easing: 'ease-in-out',
+            viewFactor: 0.2,
+            interval: 100
+        });
+    </script>
+</body>
+</html>
