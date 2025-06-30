@@ -373,6 +373,20 @@
             padding: 0;
             line-height: 0;
         }
+        /* تحسين ألوان العناوين عند التفاعل */
+        section h2, .department-title, .activities-subtitle, .contact-title {
+            color: #800020;
+            background: none !important;
+            text-shadow: 0 2px 8px #ffd70055, 0 1px 0 #fff;
+            transition: color 0.2s, background 0.2s;
+        }
+        section h2.active, .department-title.active, .activities-subtitle.active, .contact-title.active,
+        section h2:active, .department-title:active, .activities-subtitle:active, .contact-title:active {
+            color: #ffd700 !important;
+            background: #800020 !important;
+            text-shadow: 0 2px 8px #80002055, 0 1px 0 #fff;
+        }
+
         @media (max-width: 900px) {
             .contact-flex-container {
                 flex-direction: column;
@@ -388,8 +402,39 @@
             .school-logo {width:70px !important;height:70px !important;}
             header h1 {font-size:1.3em !important;}
             section h2, .department-title, .activities-subtitle, .contact-title {font-size:1.3em !important;}
+            html, body {
+                direction: rtl !important;
+            }
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+                padding: 18px 0 10px 0;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .hero-gallery,
+            .about-content,
+            .vision-gallery,
+            .activities-gallery,
+            .departments-gallery {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .contact-flex-container {
+                flex-direction: column;
+                gap: 18px;
+                padding: 18px 4px 10px 4px;
+            }
+            .contact-details-box,
+            .contact-form-box {
+                max-width: 100%;
+                min-width: 0;
+            }
         }
-        /* إصلاح ألوان النصوص في الوضع الليلي */
+        /* إصلاح ألوانن النصوص في الوضع الليلي */
         body.dark-mode input, body.dark-mode textarea {
             background: #222 !important;
             color: #ffd700 !important;
@@ -521,6 +566,9 @@
                         <li><span class="contact-icon">✉️</span> <b>البريد الإلكتروني:</b> <span>info@alshora-school.com</span></li>
                         <li><span class="contact-icon">📍</span> <b>العنوان:</b> <span>خط المطار الجديد، شارع فلسطين، الشيخ زايد سابقًا، شرق جولة مصعب</span></li>
                         <li><span class="contact-icon"><img src='assets/facebook.png' style='width:28px;vertical-align:middle;'></span> <a href="https://www.facebook.com/people/%D9%85%D8%AF%D8%A7%D8%B1%D8%B3-%D8%A7%D9%84%D8%B4%D9%88%D8%B1%D9%89-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D9%8A%D8%A9/100057260568969/?sk=about&locale=ar_AR" target="_blank" class="contact-link">صفحة المدرسة على فيس بوك</a></li>
+                    </ul>
+                </div>
+                <div class="contact-form-box">
                     <form class="contact-form">
                         <h3 class="form-title">أرسل رسالة مباشرة</h3>
                         <div class="form-group">
