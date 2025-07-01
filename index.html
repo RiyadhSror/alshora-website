@@ -176,16 +176,21 @@
             margin-bottom: 18px;
             position: relative;
             display: inline-block;
-            /* إزالة background-clip/text التي تسبب اختفاء الحروف */
-            /* background: linear-gradient(90deg,#ffd700 60%,#fffbe6 100%); */
-            /* -webkit-background-clip: text; */
-            /* -webkit-text-fill-color: transparent; */
-            /* background-clip: text; */
-            animation: fadeInDown 1s;
+            background: none !important;
+            transition: color 0.2s, background 0.2s, text-shadow 0.2s;
+            cursor: pointer;
         }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        section h2.active, .department-title.active, .activities-subtitle.active, .contact-title.active,
+        section h2:focus, .department-title:focus, .activities-subtitle:focus, .contact-title:focus,
+        section h2:active, .department-title:active, .activities-subtitle:active, .contact-title:active {
+            color: #ffd700 !important;
+            background: #800020 !important;
+            text-shadow: 0 2px 8px #80002055, 0 1px 0 #fff;
+        }
+        section h2:hover, .department-title:hover, .activities-subtitle:hover, .contact-title:hover {
+            color: #ffd700;
+            background: #80002033;
+            text-shadow: 0 2px 8px #ffd70099, 0 1px 0 #fff;
         }
         /* تحسينات عامة للنصوص */
         p, li, label, input, textarea, button {
